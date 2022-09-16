@@ -1,6 +1,3 @@
-// taken from https://www.youtube.com/watch?v=3XkU_DXcgl0&ab_channel=Remix
-// uses https://nodejs.dev/en/learn/build-an-http-server/ for server config
-
 import { createServer } from "http";
 import { createHash } from "crypto";
 
@@ -28,7 +25,7 @@ let server = createServer((request, response) => {
     }
     case "/page-1": {
       let html = createPage("Page1");
-      response.writeHead(200, {
+      response.writeHe(200, {
         // sets cache control to not store data
         "cache-control": "no-store",
       });
