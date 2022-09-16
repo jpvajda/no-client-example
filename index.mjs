@@ -18,7 +18,7 @@ let server = createServer((request, response) => {
         response.end();
       } else {
         response.writeHead(200, {
-          //sets cache control to 10 seconds
+          //sets cache control to store for 10 seconds using an etag
           "cache-control": "max-age=10",
           etag,
         });
@@ -28,6 +28,10 @@ let server = createServer((request, response) => {
     }
     case "/page-1": {
       let html = createPage("Page1");
+      response.writeHead(200, {
+        // sets cache control to not store data
+        "cache-control": "no-store",
+      });
       response.end(html);
       break;
     }
@@ -35,6 +39,7 @@ let server = createServer((request, response) => {
 });
 
 server.listen(3000);
+console.log("Node server running on port 3000 🚀");
 
 ////////////////////////////////////////
 

@@ -8,9 +8,17 @@ This simple server requires http-server to be installed
 
 In the terminal:
 
-1. run: `npm install -g http-server`
-2. run: `http-server`
+1. run: `node index.mjs`
+2. then in browser: go to: `http://localhost:3000/`
 
-then in browser:
+### The Home page example
 
-3. go to: `http://localhost:3000/`
+> sets cache control to store for 10 seconds using an etag.
+
+![No Store](./images/no-store.png)
+
+### The page 1 example
+
+> sets cache control to not store data.
+
+![No Store](./images/10-seconds.png)
