@@ -12,12 +12,18 @@ let server = createServer((request, response) => {
   switch (request.url) {
     case "/": {
       let html = createPage("Home");
-      response.writeHead(200, {
-        // "cache-control": "no-store",
-        "cache-control": "max-age=0, must-revalidate",
-        etag: md5(html),
-      });
-      response.end(html);
+      let etag = md5(html);
+      if (etag === request.headers["if-none-match"]) {
+        response.writeHead(304);
+        response.end();
+      } else {
+        response.writeHead(200, {
+          //sets cache control to 10 seconds
+          "cache-control": "max-age=10",
+          etag,
+        });
+        response.end(html);
+      }
       break;
     }
     case "/page-1": {
